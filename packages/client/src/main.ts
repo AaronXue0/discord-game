@@ -18,7 +18,6 @@ setupDiscordSdk().then(() => {
 
 async function setupDiscordSdk() {
   await discordSdk.ready();
-  console.log('Client: ' + import.meta.env.VITE_CLIENT_ID);
 
   // Authorize with Discord Client
   const {code} = await discordSdk.commands.authorize({

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@discord/embedded-app-sdk": "workspace:@discord/embedded-app-sdk@*",
+    "socket.io": "^4.7.5",
     "vue": "^3.4.21"
   },
   "devDependencies": {

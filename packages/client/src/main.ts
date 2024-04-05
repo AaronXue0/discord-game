@@ -1,10 +1,16 @@
 import {createApp} from 'vue';
 import App from './App.vue'; // Your main Vue component
 import {DiscordSDK} from '@discord/embedded-app-sdk';
+
 const discordSdk = new DiscordSDK(import.meta.env.VITE_CLIENT_ID);
+import {Client} from 'colyseus.js';
+
+// Assuming your Colyseus server is running on the same host but different port
+const colyseusClient = new Client('ws://localhost:3001');
 
 // Standard Vue setup
 const app = createApp(App);
+
 app.mount('#app'); // This should match the id of the div in your index.html
 
 type Auth = ReturnType<typeof discordSdk.commands.authenticate>;
@@ -14,6 +20,7 @@ let auth: Auth;
 setupDiscordSdk().then(() => {
   appendVoiceChannelName();
   appendGuildAvatar();
+  joinRoom();
 });
 
 async function setupDiscordSdk() {
@@ -117,5 +124,14 @@ async function appendGuildAvatar() {
     guildImg.setAttribute('height', '128px');
     guildImg.setAttribute('style', 'border-radius: 50%;');
     app.appendChild(guildImg);
+  }
+}
+async function joinRoom() {
+  try {
+    const room = await colyseusClient.joinOrCreate('your_room_name');
+    console.log('Joined room', room);
+    // Setup room event listeners or any other logic needed post-join here
+  } catch (error) {
+    console.error('Failed to join room:', error);
   }
 }

@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@discord/embedded-app-sdk": "workspace:@discord/embedded-app-sdk@*",
+    "colyseus": "^0.15.15",
+    "colyseus.js": "^0.15.18",
     "socket.io": "^4.7.5",
     "vue": "^3.4.21"
   },

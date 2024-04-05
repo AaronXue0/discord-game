@@ -119,7 +119,3 @@ async function appendGuildAvatar() {
     app.appendChild(guildImg);
   }
 }
-
-setupDiscord().then(() => {
-  console.log('Discord SDK is ready');
-});
